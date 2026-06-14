@@ -75,12 +75,12 @@ PROVIDERS = {
         "headers": {},
     },
     "aurelius": {
-        "name": "Aurelius (Ollama local)",
-        "base_url": os.getenv("OLLAMA_BASE_URL", "http://127.0.0.1:11434/v1"),
-        "api_key_env": "OLLAMA_API_KEY",
+        "name": "Aurelius (OpenClaw)",
+        "base_url": os.getenv("OPENCLAW_BASE_URL", "http://127.0.0.1:18789/v1"),
+        "api_key_env": "OPENCLAW_AUTH_TOKEN",
         "models": {
-            "nano": "qwen2.5:7b",
-            "super": "qwen2.5:7b",
+            "nano": "openclaw:aurelius",
+            "super": "openclaw:aurelius",
         },
         "headers": {},
     },
@@ -182,9 +182,8 @@ def get_available_providers():
     result = {}
     for key, val in PROVIDERS.items():
         if key == "aurelius":
-            has_local = os.path.exists("/usr/bin/ollama") or os.path.exists("/usr/local/bin/ollama")
-            has_remote = bool(os.getenv("OLLAMA_BASE_URL", ""))
-            configured = has_local or has_remote
+            token = os.getenv("OPENCLAW_AUTH_TOKEN", "")
+            configured = bool(token) and token != "tu_api_key_aqui"
         else:
             api_key = os.getenv(val["api_key_env"], "")
             configured = bool(api_key) and api_key != "tu_api_key_aqui"
@@ -219,11 +218,11 @@ def get_ai_client(provider=None):
     provider = provider or get_active_provider()
     config = get_provider_config(provider)
     api_key = _get_api_key(provider)
-    if provider != "aurelius" and (not api_key or api_key == "tu_api_key_aqui"):
+    if not api_key or api_key == "tu_api_key_aqui":
         return None
     kwargs = {
         "base_url": config["base_url"],
-        "api_key": api_key or "ollama",
+        "api_key": api_key,
     }
     if config.get("headers"):
         kwargs["default_headers"] = config["headers"]
@@ -233,9 +232,8 @@ def get_ai_client(provider=None):
 def verificar_api_key(provider=None):
     provider = provider or get_active_provider()
     if provider == "aurelius":
-        has_local = os.path.exists("/usr/bin/ollama") or os.path.exists("/usr/local/bin/ollama")
-        has_remote = bool(os.getenv("OLLAMA_BASE_URL", ""))
-        return has_local or has_remote
+        token = os.getenv("OPENCLAW_AUTH_TOKEN", "")
+        return bool(token) and token != "tu_api_key_aqui"
     api_key = _get_api_key(provider)
     return bool(api_key) and api_key != "tu_api_key_aqui"
 

@@ -108,9 +108,9 @@ Pages.configuracion = {
     const superDesc = document.querySelector('#cfg-tier-super .radio-card-desc');
     const nanoDesc = document.querySelector('#cfg-tier-nano .radio-card-desc');
     if (provider === 'aurelius') {
-      desc.textContent = 'Premium y Rápido usan el mismo modelo local (7B). No hay límite de tokens.';
-      if (superDesc) superDesc.textContent = '7B · Mismo modelo';
-      if (nanoDesc) nanoDesc.textContent = '7B · Mismo modelo';
+      desc.textContent = 'Usa el agente Aurelius vía OpenClaw Gateway. Sin límite de tokens.';
+      if (superDesc) superDesc.textContent = 'Aurelius';
+      if (nanoDesc) nanoDesc.textContent = 'Aurelius';
     } else {
       desc.textContent = 'Premium usa el modelo de 70B (mayor calidad). Rápido usa el modelo de 8B (menos tokens, más veloz).';
       if (superDesc) superDesc.textContent = '70B · Mayor calidad';
