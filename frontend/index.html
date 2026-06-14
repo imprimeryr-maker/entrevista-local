@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RyR Consultor Inmobiliario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="app">
+    <nav class="topbar">
+      <div class="topbar-brand">
+        <span class="topbar-icon">🏢</span>
+        <div>
+          <div class="topbar-title">RyR Consultor Inmobiliario</div>
+          <div class="topbar-subtitle">Asistente Inteligente de Matching</div>
+        </div>
+      </div>
+      <div class="topbar-nav">
+        <a href="#/" class="nav-link" data-route="/">Inicio</a>
+        <a href="#/proyectos" class="nav-link" data-route="/proyectos">Proyectos</a>
+        <a href="#/clientes" class="nav-link" data-route="/clientes">Clientes</a>
+        <a href="#/matching" class="nav-link" data-route="/matching">Matching</a>
+        <a href="#/promociones" class="nav-link" data-route="/promociones">Promociones</a>
+        <a href="#/configuracion" class="nav-link" data-route="/configuracion">⚙️</a>
+      </div>
+      <div class="topbar-status">
+        <span class="status-dot" id="ai-status-dot"></span>
+        <span id="ai-status-text">Verificando...</span>
+      </div>
+      <div class="topbar-tokens" id="token-counter" style="display:none;">
+        <span class="token-icon">🔤</span>
+        <span class="token-label" id="token-text">0</span>
+        <div class="token-bar-bg"><div class="token-bar-fill" id="token-bar"></div></div>
+        <span class="token-countdown" id="token-countdown"></span>
+      </div>
+    </nav>
+    <main id="main-content">
+      <div class="loader-container" id="loader">
+        <div class="loader"></div>
+        <p>Cargando...</p>
+      </div>
+    </main>
+  </div>
+  <script src="/js/api.js"></script>
+  <script src="/js/router.js"></script>
+  <script src="/js/pages/inicio.js"></script>
+  <script src="/js/pages/proyectos.js"></script>
+  <script src="/js/pages/clientes.js"></script>
+  <script src="/js/pages/matching.js"></script>
+  <script src="/js/pages/promociones.js"></script>
+  <script src="/js/pages/configuracion.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+</html>
